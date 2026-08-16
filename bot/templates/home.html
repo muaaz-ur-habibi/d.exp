@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% if files_list != None %}
+        <ul>
+        {% for f in files_list.split(",") %}
+            <li><a href="{{url_for('routes.download_file', d_file=f)}}">{{f}}</a></li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    <button><a href="{{url_for('routes.get_files_list')}}">Get files</a></button>
+    <form action="{{url_for('routes.upload_file')}}" method="post" enctype="multipart/form-data">
+        <label for="u-file">upload file</label>
+        <input type="file" name="u-file" id="u-file">
+
+        <button type="submit">submit</button>
+    </form>
+</body>
+</html>
